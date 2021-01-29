@@ -2,4 +2,5 @@
 
 export(GetNetCDFAtCoords)
 importFrom(dplyr,"%>%")
+importFrom(rlang,":=")
 importFrom(rlang,.data)

@@ -54,7 +54,7 @@ GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "t2m")
 
 ## print information on the processing step
 \dontrun{
-GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "dummy",
+GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "grid_index",
                   verbose = TRUE)
 }
 }

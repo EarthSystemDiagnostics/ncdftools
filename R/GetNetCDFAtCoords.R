@@ -23,7 +23,7 @@
 #'   value for the requested variable at each time step.
 #'
 #' @importFrom dplyr %>%
-#' @importFrom rlang .data
+#' @importFrom rlang .data :=
 #' @author Andrew Dolman with contributions from Thomas Muench
 #' @examples
 #'
@@ -34,7 +34,7 @@
 #'
 #' ## print information on the processing step
 #' \dontrun{
-#' GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "dummy",
+#' GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "grid_index",
 #'                   verbose = TRUE)
 #' }
 #' @export
@@ -96,7 +96,8 @@ GetNetCDFAtCoords <- function(filename, req.coords, req.var, time.var = "time",
     dplyr::mutate(location = as.character(1 : nrow(req.coords))) %>%
     dplyr::left_join(dat.out, by = "location") %>%
     dplyr::mutate(date = rep(dates, nrow(req.coords)),
-                  req.var = c(.data$req.var))
+                  req.var = c(.data$req.var)) %>%
+    dplyr::rename(!!req.var := .data$req.var)
 
   ncdf4::nc_close(nc1)
 
