@@ -55,7 +55,7 @@ GetNetCDFAtCoords <- function(filename, req.coords, req.var, time.var = "time",
   system.time(
     dat.out <- coord.inds.to.get %>% 
       tibble::as_tibble() %>% 
-      dplyr::mutate(row = 1:n()) %>% 
+      dplyr::mutate(row = 1:dplyr::n()) %>%
       dplyr::rowwise() %>% 
       dplyr::do({
         tmp <- ncdf4::ncvar_get(
