@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetNetCDFAtCoords.R
 \name{GetNetCDFAtCoords}
 \alias{GetNetCDFAtCoords}
-\title{Extract timeseries for nearest coordinates from a netcdf file}
+\title{Extract nearest neighbour timeseries}
 \usage{
 GetNetCDFAtCoords(
   filename,
@@ -10,33 +10,54 @@ GetNetCDFAtCoords(
   req.var,
   time.var = "time",
   lon.var = "longitude",
-  lat.var = "latitude"
+  lat.var = "latitude",
+  verbose = FALSE
 )
 }
 \arguments{
-\item{filename}{Name of the netcdf file}
+\item{filename}{path to the netcdf file.}
 
-\item{req.coords}{matrix or dataframe of longitude and latitude coordinates}
+\item{req.coords}{matrix or dataframe of requested longitude (1st column) and
+latitude (2nd column) coordinates.}
 
-\item{req.var}{name of the variable to extract}
+\item{req.var}{name of the timeseries variable to extract from the netcdf
+file.}
 
-\item{time.var}{name of the time variable}
+\item{time.var}{name of the time variable in the netcdf file.}
 
-\item{lon.var, lat.var}{names of the longitude and latitude variables in the 
-netcdf file}
+\item{lon.var}{name of the longitude variable in the netcdf file.}
+
+\item{lat.var}{name of the latitude variable in the netcdf file.}
+
+\item{verbose}{logical; if \code{TRUE} processing and run time information
+are printed to the terminal.}
 }
 \value{
-
+A data frame of n rows, where n is the product of the number of
+  requested coordinates and the time steps in the netcdf file, and five
+  columns with the requested longitude, requested latitude, index number of
+  the requested coordinate as character vector, time step, and timeseries
+  value for the requested variable at each time step.
 }
 \description{
-Extract timeseries for nearest coordinates from a netcdf file
+Extract from a netcdf file the timeseries from the grid cells which are
+nearest to a set of requested coordinates. This function is useful if you
+want to analyse only a relatively small number of grid cells from a netcdf
+file and you do not necessarily need the entire spatial field.
 }
 \examples{
-\dontrun{req.coors = data.frame(
-  lon = c(-64.5417, -64.9888, -64.7),
-  lat = c(30.0867, 30.6486, 32.47))
-GetNetCDFAtCoords("path/to/file.nc",
-                  req.coords = req.coords,
-                  req.var = "nobs")
+
+filename <- system.file("extdata", "test_data.nc", package = "ncdftools")
+req.coords = data.frame(lon = c(18, 13), lat = c(59, 52))
+
+GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "t2m")
+
+## print information on the processing step
+\dontrun{
+GetNetCDFAtCoords(filename, req.coords = req.coords, req.var = "grid_index",
+                  verbose = TRUE)
 }
+}
+\author{
+Andrew Dolman with contributions from Thomas Muench
 }
