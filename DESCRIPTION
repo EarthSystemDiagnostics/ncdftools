@@ -1,6 +1,6 @@
 Package: ncdftools
 Title: An R package of tools to handle NetCDF files
-Version: 0.1.0
+Version: 0.1.1
 Author:
   Thomas Muench [aut, cre],
   Andrew Dolman [aut],

@@ -1,3 +1,13 @@
+# ncdftools 0.1.1
+
+* fixed missing package reference to dplyr which caused `GetNetCDFAtCoords()` to
+  fail when package dplyr has not been explicitly loaded before;
+* fixed and cleaned package dependencies;
+* set up unit test infrastructure;
+* cleaned source code and improved function documentation;
+* the name of the requested netcdf variable is now returned in the output from
+  `GetNetCDFAtCoords()`.
+
 # ncdftools 0.1.0
 
 * Initial package version including from deprecated package 'ecustools' only the
