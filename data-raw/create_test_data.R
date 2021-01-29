@@ -29,9 +29,9 @@ timdim <- ncdim_def(name = "time", units = "years",
 nc.d1 <- ncvar_def(name = "t2m", units = "degree Celsius",
                    dim = list(londim, latdim, timdim), missval = NA,
                    longname = "2m temperature")
-nc.d2 <- ncvar_def(name = "dummy", units = "",
+nc.d2 <- ncvar_def(name = "grid_index", units = "",
                    dim = list(londim, latdim, timdim), missval = NA,
-                   longname = "test dummy variable")
+                   longname = "grid cell index running along space")
 
 ## create file
 file <- system.file("extdata", "test_data.nc", package = "ncdftools",
