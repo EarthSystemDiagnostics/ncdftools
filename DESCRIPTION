@@ -18,6 +18,7 @@ Imports:
     dplyr (>= 1.0.3),
     geosphere (>= 1.5.10),
     ncdf4 (>= 1.17),
+    rlang (>= 0.4.10),
     tibble (>= 3.0.5)
 Suggests:
     testthat (>= 3.0.0)
